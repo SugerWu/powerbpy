@@ -204,6 +204,368 @@ class _Page:
         return chart
 
     # pylint: disable=too-many-arguments
+    def add_line_chart(self,
+                       *,
+                       visual_id,
+                       data_source,
+                       chart_title,
+                       x_axis_title,
+                       y_axis_title,
+                       x_axis_var,
+                       y_axis_var,
+                       y_axis_var_aggregation_type,
+                       x_position,
+                       y_position,
+                       height,
+                       width,
+                       tab_order=-1001,
+                       z_position=6000,
+                       parent_group_id=None,
+                       show_data_labels=False,
+                       show_x_axis=True,
+                       show_y_axis=True,
+                       legend_position='Bottom',
+                       background_color='#FFFFFF',
+                       background_color_alpha=None,
+                       alt_text='A line chart'):
+
+        '''Add a line chart to a page
+        Parameters
+        ----------
+        visual_id : str
+            Unique id for the chart.
+        chart_type : str
+            The type of chart to build on the page. Known available types include: ["columnChart", "barChart", "clusteredBarChart", "lineChart", "pieChart", "treemap", "dualAxisChart"]
+        data_source : str
+            The name of the dataset you want to use to build the chart.
+        chart_title : str
+            The title that displays above the chart.
+        x_axis_title : str
+            Text to display on the x axis
+        y_axis_title : str
+            Text to display on the y axis
+        x_axis_var : str
+            Column name of a column from data_source that you want to use for the x axis
+        y_axis_var : str
+            Column name of a column from data_source that you want to use for the y axis
+        y_axis_var_aggregation_type : str
+            Type of aggregation method: "Sum", "Count", "Average"
+        x_position, y_position : int
+            Position of the chart on the page (origin is top left)
+        height, width : int
+            Dimensions of the chart
+        show_data_labels : bool
+            Show data labels on the chart
+        show_x_axis, show_y_axis : bool
+            Show/hide axes
+        legend_position : str
+            Position of the legend: "Bottom", "Top", "Left", "Right", "TopCentered", "BottomCentered", "LeftCentered", "RightCentered"
+        alt_text : str
+            Alternate text for accessibility
+        '''
+
+        from powerbpy.line_chart import _LineChart
+
+        chart = _LineChart(self,
+                           visual_id=visual_id,
+                           data_source=data_source,
+                           visual_title=chart_title,
+                           x_axis_title=x_axis_title,
+                           y_axis_title=y_axis_title,
+                           x_axis_var=x_axis_var,
+                           y_axis_var=y_axis_var,
+                           y_axis_var_aggregation_type=y_axis_var_aggregation_type,
+                           x_position=x_position,
+                           y_position=y_position,
+                           height=height,
+                           width=width,
+                           tab_order=tab_order,
+                           z_position=z_position,
+                           parent_group_id=parent_group_id,
+                           show_data_labels=show_data_labels,
+                           show_x_axis=show_x_axis,
+                           show_y_axis=show_y_axis,
+                           legend_position=legend_position,
+                           background_color=background_color,
+                           background_color_alpha=background_color_alpha,
+                           alt_text=alt_text)
+
+        self.visuals.append(chart)
+        return chart
+
+    # pylint: disable=too-many-arguments
+    def add_pie_chart(self,
+                      *,
+                      visual_id,
+                      data_source,
+                      chart_title,
+                      category_var,
+                      value_var,
+                      value_var_aggregation_type,
+                      x_position,
+                      y_position,
+                      height,
+                      width,
+                      tab_order=-1001,
+                      z_position=6000,
+                      parent_group_id=None,
+                      show_data_labels=True,
+                      show_legend=True,
+                      legend_position='Bottom',
+                      slice_color='Auto',
+                      start_angle=-45,
+                      end_angle=315,
+                      background_color='#FFFFFF',
+                      background_color_alpha=None,
+                      alt_text='A pie chart'):
+
+        '''Add a pie chart to a page
+        Parameters
+        ----------
+        visual_id : str
+            Unique id for the chart.
+        data_source : str
+            The name of the dataset you want to use to build the chart.
+        chart_title : str
+            The title that displays above the chart.
+        category_var : str
+            Column name for pie slice categories (e.g., "Country")
+        value_var : str
+            Column name for pie slice values (e.g., "Sales")
+        value_var_aggregation_type : str
+            Type of aggregation: "Sum", "Count", "Average"
+        x_position, y_position : int
+            Position of the chart on the page (origin is top left)
+        height, width : int
+            Dimensions of the chart
+        show_data_labels : bool
+            Show data labels on the chart
+        show_legend : bool
+            Show/hide legend
+        legend_position : str
+            Position of the legend
+        slice_color : str
+            Color of the slices (hex code or "Auto" for default)
+        start_angle, end_angle : int
+            Angle range for the pie chart
+        alt_text : str
+            Alternate text for accessibility
+        '''
+
+        from powerbpy.pie_chart import _PieChart
+
+        chart = _PieChart(self,
+                          visual_id=visual_id,
+                          data_source=data_source,
+                          visual_title=chart_title,
+                          category_var=category_var,
+                          value_var=value_var,
+                          value_var_aggregation_type=value_var_aggregation_type,
+                          x_position=x_position,
+                          y_position=y_position,
+                          height=height,
+                          width=width,
+                          tab_order=tab_order,
+                          z_position=z_position,
+                          parent_group_id=parent_group_id,
+                          show_data_labels=show_data_labels,
+                          show_legend=show_legend,
+                          legend_position=legend_position,
+                          slice_color=slice_color,
+                          start_angle=start_angle,
+                          end_angle=end_angle,
+                          background_color=background_color,
+                          background_color_alpha=background_color_alpha,
+                          alt_text=alt_text)
+
+        self.visuals.append(chart)
+        return chart
+
+    # pylint: disable=too-many-arguments
+    def add_treemap_chart(self,
+                          *,
+                          visual_id,
+                          data_source,
+                          chart_title,
+                          category_var,
+                          value_var,
+                          value_var_aggregation_type,
+                          x_position,
+                          y_position,
+                          height,
+                          width,
+                          tab_order=-1001,
+                          z_position=6000,
+                          parent_group_id=None,
+                          show_data_labels=True,
+                          show_legend=True,
+                          color_palette='Auto',
+                          sort_by='Descending',
+                          background_color='#FFFFFF',
+                          background_color_alpha=None,
+                          alt_text='A treemap chart'):
+
+        '''Add a treemap chart to a page
+        Parameters
+        ----------
+        visual_id : str
+            Unique id for the chart.
+        data_source : str
+            The name of the dataset you want to use to build the chart.
+        chart_title : str
+            The title that displays above the chart.
+        category_var : str
+            Column name for treemap categories (e.g., "Category")
+        value_var : str
+            Column name for treemap values (e.g., "Sales")
+        value_var_aggregation_type : str
+            Type of aggregation: "Sum", "Count", "Average"
+        x_position, y_position : int
+            Position of the chart on the page (origin is top left)
+        height, width : int
+            Dimensions of the chart
+        show_data_labels : bool
+            Show data labels on the chart
+        show_legend : bool
+            Show/hide legend
+        color_palette : str
+            Color palette for the treemap
+        sort_by : str
+            Sort order: "Descending" or "Ascending"
+        alt_text : str
+            Alternate text for accessibility
+        '''
+
+        from powerbpy.treemap_chart import _TreemapChart
+
+        chart = _TreemapChart(self,
+                              visual_id=visual_id,
+                              data_source=data_source,
+                              visual_title=chart_title,
+                              category_var=category_var,
+                              value_var=value_var,
+                              value_var_aggregation_type=value_var_aggregation_type,
+                              x_position=x_position,
+                              y_position=y_position,
+                              height=height,
+                              width=width,
+                              tab_order=tab_order,
+                              z_position=z_position,
+                              parent_group_id=parent_group_id,
+                              show_data_labels=show_data_labels,
+                              show_legend=show_legend,
+                              color_palette=color_palette,
+                              sort_by=sort_by,
+                              background_color=background_color,
+                              background_color_alpha=background_color_alpha,
+                              alt_text=alt_text)
+
+        self.visuals.append(chart)
+        return chart
+
+    # pylint: disable=too-many-arguments
+    def add_dual_axis_chart(self,
+                            *,
+                            visual_id,
+                            data_source,
+                            chart_title,
+                            x_axis_title,
+                            y_axis_title_left,
+                            y_axis_title_right,
+                            x_axis_var,
+                            col_y_axis_var,
+                            col_y_axis_var_aggregation_type,
+                            line_y_axis_var,
+                            line_y_axis_var_aggregation_type,
+                            x_position,
+                            y_position,
+                            height,
+                            width,
+                            tab_order=-1001,
+                            z_position=6000,
+                            parent_group_id=None,
+                            show_data_labels=False,
+                            show_x_axis=True,
+                            show_y_axis_left=True,
+                            show_y_axis_right=True,
+                            legend_position='Bottom',
+                            background_color='#FFFFFF',
+                            background_color_alpha=None,
+                            alt_text='A dual axis chart'):
+
+        '''Add a dual axis chart (column + line) to a page
+        Parameters
+        ----------
+        visual_id : str
+            Unique id for the chart.
+        data_source : str
+            The name of the dataset you want to use to build the chart.
+        chart_title : str
+            The title that displays above the chart.
+        x_axis_title : str
+            Text to display on the x axis
+        y_axis_title_left : str
+            Text for the left (primary) y axis
+        y_axis_title_right : str
+            Text for the right (secondary) y axis
+        x_axis_var : str
+            Column name for x axis
+        col_y_axis_var : str
+            Column name for the column chart values (primary series)
+        col_y_axis_var_aggregation_type : str
+            Aggregation for column series: "Sum", "Count", "Average"
+        line_y_axis_var : str
+            Column name for the line chart values (secondary series)
+        line_y_axis_var_aggregation_type : str
+            Aggregation for line series: "Sum", "Count", "Average"
+        x_position, y_position : int
+            Position of the chart on the page (origin is top left)
+        height, width : int
+            Dimensions of the chart
+        show_data_labels : bool
+            Show data labels on the chart
+        show_x_axis, show_y_axis_left, show_y_axis_right : bool
+            Show/hide axes
+        legend_position : str
+            Position of the legend
+        alt_text : str
+            Alternate text for accessibility
+        '''
+
+        from powerbpy.dual_axis_chart import _DualAxisChart
+
+        chart = _DualAxisChart(self,
+                               visual_id=visual_id,
+                               data_source=data_source,
+                               visual_title=chart_title,
+                               x_axis_title=x_axis_title,
+                               y_axis_title_left=y_axis_title_left,
+                               y_axis_title_right=y_axis_title_right,
+                               x_axis_var=x_axis_var,
+                               col_y_axis_var=col_y_axis_var,
+                               col_y_axis_var_aggregation_type=col_y_axis_var_aggregation_type,
+                               line_y_axis_var=line_y_axis_var,
+                               line_y_axis_var_aggregation_type=line_y_axis_var_aggregation_type,
+                               x_position=x_position,
+                               y_position=y_position,
+                               height=height,
+                               width=width,
+                               tab_order=tab_order,
+                               z_position=z_position,
+                               parent_group_id=parent_group_id,
+                               show_data_labels=show_data_labels,
+                               show_x_axis=show_x_axis,
+                               show_y_axis_left=show_y_axis_left,
+                               show_y_axis_right=show_y_axis_right,
+                               legend_position=legend_position,
+                               background_color=background_color,
+                               background_color_alpha=background_color_alpha,
+                               alt_text=alt_text)
+
+        self.visuals.append(chart)
+        return chart
+
+    # pylint: disable=too-many-arguments
     def add_text_box(self,
                      *,
                  text,
